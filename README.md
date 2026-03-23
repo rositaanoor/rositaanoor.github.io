@@ -1,2 +1,2 @@
-- [Injector](Injector.html)
+- [Injector](injector.html)
 - [Generator Laporan LPJ](lap-lpj.html)
