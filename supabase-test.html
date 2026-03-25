@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supabase Connection Test</title>
+<style>
+body{font-family:system-ui,sans-serif;padding:1.5rem;max-width:600px;margin:0 auto;font-size:14px}
+h2{margin-bottom:1rem}
+.test{background:#f5f5f5;border-radius:8px;padding:1rem;margin-bottom:.75rem}
+.test h3{margin:0 0 .5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:#666}
+.result{font-family:monospace;font-size:.8rem;word-break:break-all;margin-top:.5rem;padding:.5rem;border-radius:4px}
+.ok{background:#d4edda;color:#155724}
+.err{background:#f8d7da;color:#721c24}
+.pending{background:#fff3cd;color:#856404}
+button{padding:.6rem 1.2rem;border:none;background:#0070f3;color:white;border-radius:6px;cursor:pointer;font-size:.9rem;margin-top:.5rem}
+button:disabled{opacity:.5}
+#log{background:#000;color:#0f0;padding:1rem;border-radius:8px;font-family:monospace;font-size:.75rem;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow-y:auto;margin-top:1rem}
+</style>
+</head>
+<body>
+<h2>🔌 Supabase Connection Test</h2>
+<p style="color:#666;font-size:.85rem">Buka halaman ini dari web server (bukan file://). Tap "Run Tests" untuk test koneksi.</p>
+
+<div class="test">
+  <h3>Environment</h3>
+  <div id="envResult" class="result pending">Checking...</div>
+</div>
+
+<div class="test">
+  <h3>Test 1: GET (no preflight)</h3>
+  <div id="getResult" class="result pending">Waiting...</div>
+</div>
+
+<div class="test">
+  <h3>Test 2: POST text/plain (no preflight)</h3>
+  <div id="postPlainResult" class="result pending">Waiting...</div>
+</div>
+
+<div class="test">
+  <h3>Test 3: POST application/json (with preflight)</h3>
+  <div id="postJsonResult" class="result pending">Waiting...</div>
+</div>
+
+<button id="btn" onclick="runTests()">▶ Run Tests</button>
+
+<div id="log"></div>
+
+<script>
+const URL  = 'https://vierlnhyprcklounawfi.supabase.co';
+const KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpZXJsbmh5cHJja2xvdW5hd2ZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNDQ5MjksImV4cCI6MjA4OTgyMDkyOX0.VolKwcdWOAU-20HK3yBSZPhJT9UbkO7fi0IodeyIgfg';
+const log  = document.getElementById('log');
+
+function addLog(msg) {
+  log.textContent += new Date().toISOString().slice(11,23) + ' ' + msg + '\n';
+  log.scrollTop = log.scrollHeight;
+}
+
+function setResult(id, ok, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'result ' + (ok ? 'ok' : 'err');
+}
+
+async function runTests() {
+  document.getElementById('btn').disabled = true;
+  log.textContent = '';
+  addLog('Starting tests...');
+  addLog('Protocol: ' + location.protocol);
+  addLog('Host: ' + location.host);
+
+  // Environment check
+  setResult('envResult', true,
+    'Protocol: ' + location.protocol + '\n' +
+    'Host: ' + location.host + '\n' +
+    'UserAgent: ' + navigator.userAgent.slice(0,80));
+
+  // Test 1: GET
+  addLog('Test 1: GET /rest/v1/logs...');
+  try {
+    const r = await fetch(URL + '/rest/v1/logs?select=user_id&limit=1', {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY }
+    });
+    const body = await r.text();
+    addLog('GET → ' + r.status + ' ' + body.slice(0,100));
+    setResult('getResult', r.ok,
+      'Status: ' + r.status + '\nBody: ' + body.slice(0,200));
+  } catch(e) {
+    addLog('GET ERROR: ' + e.name + ': ' + e.message);
+    setResult('getResult', false, e.name + ': ' + e.message);
+  }
+
+  // Test 2: POST text/plain
+  addLog('Test 2: POST text/plain...');
+  try {
+    const body = JSON.stringify({user_id:'__test__',payload:'test',updated_at:new Date().toISOString()});
+    const r = await fetch(URL + '/rest/v1/logs?on_conflict=user_id', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'apikey': KEY,
+        'Authorization': 'Bearer ' + KEY,
+        'Content-Type': 'text/plain'
+      },
+      body
+    });
+    const resp = await r.text();
+    addLog('POST text/plain → ' + r.status + ' ' + resp.slice(0,100));
+    setResult('postPlainResult', r.ok || r.status < 500,
+      'Status: ' + r.status + '\nBody: ' + resp.slice(0,200));
+  } catch(e) {
+    addLog('POST text/plain ERROR: ' + e.name + ': ' + e.message);
+    setResult('postPlainResult', false, e.name + ': ' + e.message);
+  }
+
+  // Test 3: POST application/json
+  addLog('Test 3: POST application/json...');
+  try {
+    const body = JSON.stringify({user_id:'__test2__',payload:'test',updated_at:new Date().toISOString()});
+    const r = await fetch(URL + '/rest/v1/logs?on_conflict=user_id', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'apikey': KEY,
+        'Authorization': 'Bearer ' + KEY,
+        'Content-Type': 'application/json'
+      },
+      body
+    });
+    const resp = await r.text();
+    addLog('POST json → ' + r.status + ' ' + resp.slice(0,100));
+    setResult('postJsonResult', r.ok || r.status < 500,
+      'Status: ' + r.status + '\nBody: ' + resp.slice(0,200));
+  } catch(e) {
+    addLog('POST json ERROR: ' + e.name + ': ' + e.message);
+    setResult('postJsonResult', false, e.name + ': ' + e.message);
+  }
+
+  addLog('Done.');
+  document.getElementById('btn').disabled = false;
+}
+
+// Auto-check environment
+document.getElementById('envResult').textContent =
+  'Protocol: ' + location.protocol + ' | Host: ' + (location.host || 'local file');
+document.getElementById('envResult').className = 'result ' +
+  (location.protocol === 'https:' ? 'ok' : 'err');
+</script>
+</body>
+</html>
