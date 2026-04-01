@@ -1,4 +1,4 @@
 - [Injector v0.4](injector.html)
-- [CoI v0.1](coi.html?target="_blank")
+- [CoI v0.2](coi.html)
 - [Tanggapan v0.1](generator-tanggapan.html)
 - [Supabase Test v0.1](supabase-test.html)
