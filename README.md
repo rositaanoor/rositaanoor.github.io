@@ -1,4 +1,3 @@
-- [Injector v0.2](injector.html)
-- [Generator Laporan LPJ v0.2](lap-lpj.html)
+- [Injector v0.3](injector.html)
 - [Tanggapan v0.1](generator-tanggapan.html)
 - [Supabase Test v0.1](supabase-test.html)
