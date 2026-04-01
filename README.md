@@ -1,4 +1,4 @@
 - [Injector v0.4](injector.html)
-- [CoI v0.5](coi.html)
-- [Tanggapan v0.2](tanggapan.html)
+- [CoI v0.6](coi.html)
+- [Tanggapan v0.3](tanggapan.html)
 - [Supabase Test v0.1](supabase-test.html)
