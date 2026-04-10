@@ -4,4 +4,5 @@
 - [Laporan Gratifikasi v0.1](gratifikasi.html)
 - [Laporan Pengaduan v0.1](pengaduan.html)
 - [Retur](retur.html)
+- [LPJ](lpj.html)
 - [Supabase Test v0.1](supabase-test.html)
