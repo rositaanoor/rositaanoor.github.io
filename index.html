@@ -51,7 +51,8 @@ var APPS=[
   {name:'File Editor',desc:'Compress, convert, merge, and extract',href:'./file-edit/',color:'#f4e285',icon:'F'},
   {name:'Document Generator',desc:'Generate dokumen dengan template dari kamu',href:'./document-generator/',color:'#f4a259',icon:'G'},
   {name:'Bill Splitter',desc:'Bagi tagihan belanjamu dengan teman',href:'./receipt/',color:'#5b8e7d',icon:'B'},
-  {name:'Subscription List',desc:'Catat langganan rutin',href:'./subscription/',color:'#bc4b51',icon:'S'}
+  {name:'Subscription List',desc:'Catat langganan rutin',href:'./subscription/',color:'#bc4b51',icon:'S'},
+  {name:'Room Deco',desc:'Bantu kamarmu lebih tertata',href:'./room-deco/',color:'#837469',icon:'R'}
 ];
 document.getElementById('list').innerHTML=APPS.map(function(a){
   return '<a class="app" href="'+a.href+'"><div class="ic" style="background:'+a.color+'">'+a.icon+'</div><div class="tt"><b>'+a.name+'</b><span>'+a.desc+'</span></div><svg class="go" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.5 5.2c-.9-.6-2 0-2 1.1v11.4c0 1.1 1.1 1.7 2 1.1L18 12.9c.8-.5.8-1.3 0-1.8z"/></svg></a>';
