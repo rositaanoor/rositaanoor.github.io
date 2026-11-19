@@ -32,7 +32,8 @@ h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:0 0 20px 4px}
 </main>
 <script>
 var APPS=[
-  {name:'Planner',desc:'Jurnal interstitial, to-do, kalender, habit',href:'./planner/',color:'#0ea5e9',icon:'P'}
+  {name:'Planner',desc:'Jurnal, to-do',href:'./planner/',color:'#0ea5e9',icon:'P'},
+  {name:'File Editor',desc:'Compress, Convert, Merge, Extract',href:'./file/',color:'#663849',icon:'F'}
 ];
 document.getElementById('list').innerHTML=APPS.map(function(a){
   return '<a class="app" href="'+a.href+'"><div class="ic" style="background:'+a.color+'">'+a.icon+'</div><div class="tt"><b>'+a.name+'</b><span>'+a.desc+'</span></div><span class="go">→</span></a>';
