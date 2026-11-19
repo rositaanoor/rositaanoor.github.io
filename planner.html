@@ -504,9 +504,9 @@ html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
 body{font:16px/1.4 var(--body)}
 button,a,.day,.tab,.md{touch-action:manipulation}
 .wrap{max-width:720px;padding:0 16px calc(104px + env(safe-area-inset-bottom))}
-.top{padding:calc(8px + env(safe-area-inset-top)) 0 2px}
+.top{padding:calc(26px + env(safe-area-inset-top)) 0 2px}
 .brand{align-items:center;flex-wrap:nowrap;gap:8px}
-h1{font:600 17px/1.2 var(--display);letter-spacing:0;white-space:nowrap}
+h1{font:800 26px/1.15 var(--display);letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand>div:first-child{min-width:0;flex:1}
 .status{max-width:none;display:inline-flex;margin-left:8px;vertical-align:middle}
 h1 b{font-weight:600}
@@ -515,7 +515,7 @@ h1 b{font-weight:600}
 .status{border:0;background:transparent;padding:0;font-size:11.5px;font-weight:500;gap:5px;max-width:150px}
 .status span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .status i{width:7px;height:7px;flex:none}
-.gear{width:36px;height:36px;border-radius:50%;border:0;background:var(--surface);color:var(--acc);display:grid;place-items:center;padding:0;cursor:pointer;flex:none}
+.gear{width:40px;height:40px;border-radius:50%;border:0;background:var(--surface);color:var(--acc);display:grid;place-items:center;padding:0;cursor:pointer;flex:none}
 .gear.on{background:var(--acc);color:var(--on)}
 .yearbar{display:none}
 .years{background:var(--soft);padding:2px;border-radius:9px;gap:0;margin-top:10px}
