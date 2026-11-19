@@ -4,9 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Apps">
+<meta name="apple-mobile-web-app-title" content="Cloudy Clouds">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <meta name="theme-color" content="#f2f2f7">
-<title>Apps</title>
+<title>Cloudy Clouds</title>
 <style>
 :root{--bg:#f2f2f7;--card:#fff;--tx:#000;--mu:#8e8e93;--sep:#e5e5ea;--acc:#0ea5e9}
 @media(prefers-color-scheme:dark){:root{--bg:#000;--card:#1c1c1e;--tx:#fff;--mu:#98989f;--sep:#38383a}}
@@ -22,7 +24,7 @@ h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:0 0 20px 4px}
 .tt{flex:1;min-width:0}
 .tt b{display:block;font-weight:700}
 .tt span{display:block;color:var(--mu);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.go{color:var(--mu);font-size:20px}
+.go{color:var(--mu);flex:none}
 h2{font-size:13px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.02em;margin:28px 0 8px 16px}
 .acct{background:var(--card);border-radius:14px;padding:16px}
 .acct input{width:100%;font:inherit;color:inherit;background:var(--bg);border:0;border-radius:10px;padding:11px 12px;margin:0 0 10px;outline:none}
@@ -37,7 +39,7 @@ h2{font-size:13px;font-weight:600;color:var(--mu);text-transform:uppercase;lette
 </head>
 <body>
 <main>
-<h1>Apps</h1>
+<h1>Cloudy Clouds</h1>
 <div class="list" id="list"></div>
 <h2>Akun Google</h2>
 <div class="acct" id="acct"></div>
@@ -48,7 +50,7 @@ var APPS=[
   {name:'Planner',desc:'Jurnal interstitial, to-do, kalender, habit',href:'./planner/',color:'#0ea5e9',icon:'P'}
 ];
 document.getElementById('list').innerHTML=APPS.map(function(a){
-  return '<a class="app" href="'+a.href+'"><div class="ic" style="background:'+a.color+'">'+a.icon+'</div><div class="tt"><b>'+a.name+'</b><span>'+a.desc+'</span></div><span class="go">→</span></a>';
+  return '<a class="app" href="'+a.href+'"><div class="ic" style="background:'+a.color+'">'+a.icon+'</div><div class="tt"><b>'+a.name+'</b><span>'+a.desc+'</span></div><svg class="go" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.5 5.2c-.9-.6-2 0-2 1.1v11.4c0 1.1 1.1 1.7 2 1.1L18 12.9c.8-.5.8-1.3 0-1.8z"/></svg></a>';
 }).join('');
 
 var acct=document.getElementById('acct');
