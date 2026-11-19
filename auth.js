@@ -3,7 +3,7 @@
    Pakai: <script src="../auth.js"></script> (di root: ./auth.js). */
 (function(){
 /* Isi sekali dengan Client ID Google-mu (bukan rahasia). Kalau terisi, halaman index tidak lagi meminta Client ID. */
-var CLIENT_ID='';
+var CLIENT_ID='270909836788-69i2ii2nus89nmfignf1b2t53ma3rong.apps.googleusercontent.com';
 var K='shared.auth',SCOPE='https://www.googleapis.com/auth/drive.appdata',TC=null,TCID='',TCB=null,TEB=null,GP=null;
 function read(){try{var o=JSON.parse(localStorage.getItem(K)||'null');return o&&o.cid&&o.pass?o:null;}catch(e){return null;}}
 function write(o){try{localStorage.setItem(K,JSON.stringify(o));}catch(e){}}
